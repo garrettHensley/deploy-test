@@ -15,10 +15,19 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const newTodo = new Todo(req.body)
+  console.log('hi')
   try {
-    const todo = await newTodo.save()
-    if(!todo) throw new Error('something went wrong saving')
-    res.status(200).json(todo)
+    console.log('in')
+    const todo = await Todo.create(req.body, (e, data) => {
+      if(e) {
+        console.log(e)
+      }
+      else {
+        res.status(200).json(data)
+      }
+    })
+    // if(!todo) throw new Error('something went wrong saving')
+    // res.status(200).json(todo)
   } catch(error) {
     res.status(500).json({message: error.message})
   }

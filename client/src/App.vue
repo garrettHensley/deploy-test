@@ -1,5 +1,9 @@
 <template>
   <div> hello </div>
+  <button @click="addTodo()">test</button>
+  <ol>
+    <li v-for="todo in todos" :key="todo._id">{{ todo }}</li>
+  </ol>
 </template>
 
 <script>
@@ -9,8 +13,8 @@ export default {
   data() {
     return {
       todos: [],
-      description: "",
-      title: "",
+      description: "description",
+      title: "testing",
     }
   },
   async mounted() {
@@ -18,15 +22,16 @@ export default {
     this.todos = response.data
   },
   methods: {
-    async addTodo(e) {
-      e.preventDefault()
-      const response = await axios.post("api/todoList/", {
+    async addTodo() {
+
+      const response =  await axios.post("api/todoList/", {
         title: this.title,
         description: this.description,
       })
+      console.log(response.data)
       this.todos.push(response.data)
-      this.title = ""
-      this.description = ""
+      // this.title = ""
+      // this.description = ""
     },
     async removeTodo(item, i) {
       await axios.delete("api/todoList/" + item._id)
