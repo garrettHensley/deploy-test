@@ -18,5 +18,6 @@ mongoose
   }).then(() => console.log('MongoDB database connected...'))
   .catch((e) => console.log(e))
 
+  app.use('/', TodoListRoutes)
 app.use('/api/todoList', TodoListRoutes)
 app.listen(process.env.PORT, () => console.log(`app listening at http://localhost:${process.env.PORT}`))
