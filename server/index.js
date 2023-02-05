@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const { PORT, mongoUri } = require('./.env')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const TodoListRoutes = require('./routes/api/todoList')
+const TodoListRoutes = require('./routes/api/Todolist.js')
 const path = require('path')
 require('dotenv').config()
 
@@ -18,6 +18,5 @@ mongoose
   }).then(() => console.log('MongoDB database connected...'))
   .catch((e) => console.log(e))
 
-  app.use('/', TodoListRoutes)
 app.use('/api/todoList', TodoListRoutes)
 app.listen(process.env.PORT, () => console.log(`app listening at http://localhost:${process.env.PORT}`))
