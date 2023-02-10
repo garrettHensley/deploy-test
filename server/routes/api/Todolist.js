@@ -15,9 +15,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const newTodo = new Todo(req.body)
-  console.log('hi')
   try {
-    console.log('in')
     const todo = await Todo.create(req.body, (e, data) => {
       if(e) {
         console.log(e)
